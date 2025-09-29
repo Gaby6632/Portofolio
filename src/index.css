@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern Portfolio Design System - Dark Theme with Glow Effects */
+
+@layer base {
+  :root {
+    /* Dark Base Colors */
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    /* Card & Surface Colors */
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary - Electric Purple */
+    --primary: 270 91% 65%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 270 91% 75%;
+
+    /* Secondary - Cyan Accent */
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 240 10% 3.9%;
+    --secondary-glow: 195 100% 65%;
+
+    /* Muted Colors */
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    /* Accent - Neon Green */
+    --accent: 142 71% 45%;
+    --accent-foreground: 240 10% 3.9%;
+    --accent-glow: 142 71% 60%;
+
+    /* Glass Effect */
+    --glass: 240 10% 15%;
+    --glass-border: 240 10% 25%;
+
+    /* Destructive */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders & Inputs */
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 270 91% 65%;
+
+    /* Radius */
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-glow)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-glow)));
+    --gradient-dark: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(240 15% 8%));
+    --gradient-glass: linear-gradient(135deg, hsla(240, 10%, 15%, 0.8), hsla(240, 10%, 25%, 0.3));
+
+    /* Shadows & Glows */
+    --shadow-glow: 0 0 50px hsl(var(--primary) / 0.3);
+    --shadow-secondary-glow: 0 0 40px hsl(var(--secondary) / 0.3);
+    --shadow-accent-glow: 0 0 35px hsl(var(--accent) / 0.3);
+    --shadow-subtle: 0 4px 20px hsla(240, 10%, 0%, 0.4);
+
+    /* Animation Easing */
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Keep same variables for dark mode consistency */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background: var(--gradient-dark);
+    min-height: 100vh;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-secondary);
+  }
+}
+
+@layer components {
+  /* Glass Effect Components */
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-secondary {
+    box-shadow: var(--shadow-secondary-glow);
+  }
+
+  .glow-accent {
+    box-shadow: var(--shadow-accent-glow);
+  }
+
+  /* Hover Glow Animation */
+  .hover-glow {
+    transition: all 0.3s var(--ease-smooth);
+  }
+
+  .hover-glow:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Text Glow */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section Padding */
+  .section-padding {
+    @apply py-20 px-6;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply mx-auto max-w-6xl;
+  }
+}
