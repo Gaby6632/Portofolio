@@ -199,7 +199,6 @@ export default function Interactive3DCard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          Drag to rotate • Scroll to zoom • Click cube faces to rotate layers
         </motion.p>
       </div>
 

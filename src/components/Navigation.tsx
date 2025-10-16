@@ -56,9 +56,14 @@ export default function Navigation() {
                 />
               </motion.a>
             ))}
-            <Button 
-              variant="default" 
+            <Button
+              variant="default"
               className="glow-primary hover-glow bg-gradient-primary border-0"
+              onClick={(e) => {
+                e.preventDefault()
+                const section = document.querySelector('#contact')
+                section?.scrollIntoView({ behavior: 'smooth' })
+              }}
             >
               Hire Me
             </Button>
@@ -87,15 +92,16 @@ export default function Navigation() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="block text-muted-foreground hover:text-foreground transition-colors py-2"
+                className="block text-muted-foreground hover:text-foreground transition-colors px-2"
+                whileHover={{ x: 5 }}
                 onClick={(e) => {
                   e.preventDefault()
                   setIsOpen(false)
-                  document.querySelector(item.href)?.scrollIntoView({ 
-                    behavior: 'smooth' 
-                  })
+                  setTimeout(() => {
+                    const section = document.querySelector(item.href)
+                    section?.scrollIntoView({ behavior: 'smooth' })
+                  }, 100)
                 }}
-                whileHover={{ x: 10 }}
               >
                 {item.name}
               </motion.a>
@@ -103,9 +109,18 @@ export default function Navigation() {
             <Button 
               variant="default" 
               className="w-full glow-primary bg-gradient-primary border-0 mt-4"
+              onClick={(e) => {
+                e.preventDefault()
+                setIsOpen(false)
+                setTimeout(() => {
+                  const section = document.querySelector('#contact')
+                  section?.scrollIntoView({ behavior: 'smooth' })
+                }, 100)
+              }}
             >
               Hire Me
             </Button>
+
           </div>
         </motion.div>
       </div>
