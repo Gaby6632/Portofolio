@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Code, Palette, Zap, Award } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
+import Img1 from '@/assets/img1.jpeg'
 
 const skills = [
   {
@@ -105,7 +106,7 @@ export default function AboutSection() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-<div className="aspect-square glass rounded-2xl p-2 relative overflow-hidden group">
+<div className="aspect-square glass rounded-2xl p-1 relative overflow-hidden group outline">
   {/* Fundal gradient + imagine */}
   <div
     className="w-full h-full rounded-2xl bg-gradient-secondary relative flex items-center justify-center"
@@ -115,12 +116,6 @@ export default function AboutSection() {
       backgroundPosition: "center",
     }}
   >
-    {/* Poza ta în cerc, mai mare */}
-    <img
-      src="/CodingImg.jpg"
-      alt="Gabriel"
-      className="w-3/4 h-3/4 rounded-full object-cover border-4 border-white"
-    />
   </div>
 
   {/* Glow la hover */}

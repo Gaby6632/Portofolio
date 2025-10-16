@@ -9,24 +9,9 @@ import { useToast } from '@/hooks/use-toast'
 import emailjs from '@emailjs/browser'
 
 const contactInfo = [
-  {
-    icon: Mail,
-    title: "Email",
-    value: "gabrieljoian14@gmail.com",
-    href: "mailto:gabrieljoian14@gmail.com"
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    value: "+40752857960",
-    href: "tel:+40752857960"
-  },
-  {
-    icon: MapPin,
-    title: "Location",
-    value: "Romania, VL",
-    href: "#"
-  }
+  { icon: Mail, title: "Email", value: "gabrieljoian14@gmail.com", href: "mailto:gabrieljoian14@gmail.com" },
+  { icon: Phone, title: "Phone", value: "+40752857960", href: "tel:+40752857960" },
+  { icon: MapPin, title: "Location", value: "Romania, VL", href: "#" }
 ]
 
 export default function ContactSection() {
@@ -39,54 +24,52 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    try {
-      
-         const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID!
-         const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID!
-         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          to_name: 'Gabriel'
-        },
-        publicKey
-      )
-
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      })
-
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
-      console.error('EmailJS error:', error)
-      toast({
-        title: "Failed to send message",
-        description: "Please configure EmailJS credentials or try again later.",
-        variant: "destructive"
-      })
-    } finally {
+    if (!serviceId || !templateId || !publicKey) {
+      toast({ title: "Config error", description: "Check your EmailJS IDs in .env", variant: "destructive" })
       setIsSubmitting(false)
+      return
     }
-  }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
+try {
+  // Send message to your inbox
+  await emailjs.send(serviceId, templateId, {
+    name: formData.name,
+    email: formData.email,
+    subject: formData.subject,
+    message: formData.message,
+    time: new Date().toLocaleString()
+  }, publicKey)
 
+  // Try auto-reply but don’t block UI
+  emailjs.send(serviceId, import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID!, {
+    to_name: formData.name,
+    to_email: formData.email,
+    reply_message: `Hey ${formData.name}, thanks for contacting me! I got your message about "${formData.subject}". I'll get back to you soon!`
+  }, publicKey).catch(err => console.warn("Auto-reply failed:", err))
+
+  toast({ title: "Message sent!", description: "Thanks, I’ll reply soon." })
+  setFormData({ name: '', email: '', subject: '', message: '' })
+} catch (error) {
+  console.error('EmailJS error:', error)
+  toast({ title: "Send failed", description: "Try again later.", variant: "destructive" })
+} finally {
+  setIsSubmitting(false)
+}
+
+
+  }
   return (
     <section id="contact" className="section-padding">
       <div className="container-custom">

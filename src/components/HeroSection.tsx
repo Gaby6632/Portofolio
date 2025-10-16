@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Interactive3DCard from './Interactive3DCard'
+import Img1 from '@/assets/img1.jpeg'
 
 export default function HeroSection() {
   return (
@@ -23,7 +24,7 @@ export default function HeroSection() {
               transition={{ delay: 0.1 }}
             >
               <div className="w-full h-full rounded-full bg-background flex items-center justify-center text-muted-foreground">
-                <span className="text-sm">Add Photo</span>
+                <img className='rounded-full' src={Img1} alt="My Profile Photo" />
               </div>
             </motion.div>
 
