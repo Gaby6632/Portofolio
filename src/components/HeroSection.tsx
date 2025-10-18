@@ -23,38 +23,37 @@ export default function HeroSection() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 }}
             >
-<div className="relative w-40 h-40 rounded-full overflow-hidden">
-  {/* avatar as background */}
-  <div
-    aria-hidden="true"
-    style={{
-      outline: '3px solid rgba(255, 255, 255, 1)', // contur alb semi-transparent
-      outlineOffset: '4px',                  // distanța dintre contur și imagine
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',    // centrare perfectă
-      width: '95%',
-      height: '95%',
-      backgroundImage: `url(${Img1})`,
-      backgroundPosition: 'center center', // centrare pe ambele axe
-      backgroundSize: 'cover',             // umple complet containerul
-      backgroundRepeat: 'no-repeat',
-      pointerEvents: 'none'
-    }}
-    className="rounded-full"
-  />
-
-  {/* overlay pentru blocarea click/drag */}
-  <div
-    onContextMenu={(e) => e.preventDefault()}
-    onMouseDown={(e) => e.preventDefault()}
-    onDragStart={(e) => e.preventDefault()}
-    className="absolute inset-0 z-10 rounded-full"
-  />
-
-</div>
-
+            <div className="relative w-40 h-40 rounded-full overflow-hidden">
+              {/* avatar as background */}
+              <div
+                aria-hidden="true"
+                style={{
+                  outline: '3px solid rgba(255, 255, 255, 1)', // contur alb semi-transparent
+                  outlineOffset: '4px',                  // distanța dintre contur și imagine
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',    // centrare perfectă
+                  width: '95%',
+                  height: '95%',
+                  backgroundImage: `url(${Img1})`,
+                  backgroundPosition: 'center center', // centrare pe ambele axe
+                  backgroundSize: 'cover',             // umple complet containerul
+                  backgroundRepeat: 'no-repeat',
+                  pointerEvents: 'none'
+                }}
+                className="rounded-full"
+              />
+            
+              {/* overlay pentru blocarea click/drag */}
+              <div
+                onContextMenu={(e) => e.preventDefault()}
+                onMouseDown={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+                className="absolute inset-0 z-10 rounded-full"
+              />
+            
+            </div>
 
             </motion.div>
 

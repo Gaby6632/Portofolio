@@ -191,7 +191,6 @@ export default function Interactive3DCard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          Interactive 3D Experience
         </motion.h3>
         <motion.p 
           className="text-muted-foreground"

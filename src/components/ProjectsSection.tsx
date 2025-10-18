@@ -19,10 +19,10 @@ const projects = [
   },
   {
     id: 3,
-    title: 'Portofolio in html/css',
-    description: 'This is my earlier portfolio built with HTML, CSS, and a bit of JS. You’ll notice the name ‘Ionut’ instead of ‘Gabriel’—that’s still me, just using my other real name for freelancing accounts.',
-    image: '/secondPortofolio.png',
-    href: 'https://hire-g.netlify.app/'
+    title: 'Tehno Project',
+    description: 'This is a website for my tehnology class, the project is about Power Plants, especially Nuclear Power Plants.',
+    image: '/tehno-prj.png',
+    href: 'https://tehno-project.vercel.app/'
   }
 ]
 
