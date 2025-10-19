@@ -18,7 +18,8 @@ const designTools = [
 
 const softwareTools = [
   { name: 'VS Code', icon: '💻', color: '#007ACC' },
-  { name: 'Git', icon: '🔧', color: '#8b5cf6' }
+  { name: 'Git', icon: '🔧', color: '#8b5cf6' },
+  { name: 'API Integration', icon: '🌐', color: '#007ACC' },
 ]
 
 const SkillCard = ({ title, skills, icon: Icon, delay }: {
@@ -90,17 +91,17 @@ export default function SkillsSection() {
           />
           
           <SkillCard
-            title="Design Tools"
-            skills={designTools}
-            icon={Palette}
-            delay={0.4}
-          />
-          
-          <SkillCard
             title="Software & IDEs"
             skills={softwareTools}
             icon={Monitor}
             delay={0.6}
+          />
+
+          <SkillCard
+            title="Design Tools"
+            skills={designTools}
+            icon={Palette}
+            delay={0.4}
           />
         </div>
 
